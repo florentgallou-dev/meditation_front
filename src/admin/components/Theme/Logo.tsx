@@ -1,5 +1,14 @@
 const Logo = () => (
   <svg height={50} viewBox="0 0 1013 527" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      {'.st0{fill: #85ccd3}' +
+        '.st1{fill: #1b939e}' +
+        '.st2,.st4{stroke: #000; stroke-width: 1.7498; stroke-miterlimit: 10}' +
+        '.st4{stroke-width: 1.2967}' +
+        '.st5{fill: #fff}' +
+        '.st6,.st8{fill: none; stroke: #000; stroke-width: 3.3286; stroke-miterlimit: 10}' +
+        '.st8{fill: #fff; stroke-width: 2.2191}'}
+    </style>
     <g transform="matrix(0.10000000149, 0, 0, -0.10000000149, -5709.94482105814, -3957.176519930363)" fill="#000000" stroke="none" style="transform-origin: 6217.05px 4200px;">
       <path d="M5682 6519 c-325 -38 -642 -193 -853 -417 -297 -316 -422 -755 -343 -1206 12 -72 22 -104 25 -80 0 5 2 101 3 214 2 221 17 319 73 475 98 273 305 518 578 685 227 140 538 245 840 284 90 12 97 14 72 24 -72 30 -240 39 -395 21z" style="fill: rgb(251, 172, 136);"/>
       <path d="M7088 6147 c-48 -95 -132 -255 -187 -356 l-99 -184 73 -166 c40 -91 87 -199 106 -240 l34 -74 80 242 c54 166 82 236 87 224 4 -10 33 -116 64 -235 31 -120 60 -218 64 -218 4 0 57 103 118 228 l112 228 -183 361 -182 361 -87 -171z" style="fill: rgb(253, 165, 132);"/>
