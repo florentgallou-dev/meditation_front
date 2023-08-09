@@ -9,7 +9,7 @@ const PostList = props => (
       <TextField source="name" />
     </ReferenceField>
     <DateField label="Publié" source="publishedAt"/>
-    <DeleteButton basePath='/posts' />
+    <DeleteButton basepath='/posts' />
   </ListGuesser>
 );
 

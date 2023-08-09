@@ -1,4 +1,4 @@
-import { ListGuesser } from "@api-platform/admin";
+import { ListGuesser, FieldGuesser } from "@api-platform/admin";
 import { ReferenceManyCount, ReferenceArrayField, SingleFieldList, ChipField, TextField, DeleteButton } from "react-admin";
 
 const CategoryList = props => (
