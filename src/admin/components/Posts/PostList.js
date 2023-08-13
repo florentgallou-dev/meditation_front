@@ -4,7 +4,7 @@ import { ReferenceField, TextField, DateField, DeleteButton } from "react-admin"
 const PostList = props => (
   <ListGuesser {...props}>
     <TextField label="Titre" source="title" />
-    <TextField source="slug" />
+    <TextField label="Description" source="description" />
     <ReferenceField label="Categorie" source="category" reference="categories">
       <TextField source="name" />
     </ReferenceField>

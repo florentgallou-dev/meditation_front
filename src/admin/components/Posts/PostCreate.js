@@ -12,6 +12,7 @@ import { RichTextInput } from 'ra-input-rich-text';
   const PostCreate = props => (
     <CreateGuesser {...props}>
         <TextInput label="Titre" source="title" />
+        <TextInput label="Desription" source="description" />
         <RichTextInput
             label="Contenu"
             source="content"
