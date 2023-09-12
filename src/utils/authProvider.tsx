@@ -1,6 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import { ENTRYPOINT } from '../config/entrypoint';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   // @ts-ignore
   login: ({ username, password }) => {

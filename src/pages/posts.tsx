@@ -15,11 +15,11 @@ export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const datas = getPosts()
+    getPosts()
       .then(r => r.json())
       .then( data => {
         setPosts(data['hydra:member']);
-      });
+    });
   }, [])
 
 
