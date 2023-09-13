@@ -19,4 +19,6 @@ jobs:
                 IP: ${{secrets.HOST}}
                 PORT: ${{secrets.PORT}}
                 SHELL: |                                # add commands i want to execute on server
-                    "cd meditation_recipe && git pull && docker pull ghcr.io/florentgallou-dev/meditation_front:latest && docker compose -f docker-compose.recipe.yml up"
+                    "cd meditation_recipe"
+                    "git pull"
+                    "docker compose -f docker-compose.recipe.yml up --build"
