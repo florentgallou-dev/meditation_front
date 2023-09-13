@@ -1,0 +1,22 @@
+name: recipe pull image
+
+run-name: ${{ github.actor }} is connecting to OVH via SSH and pull new docker image and lauch recipe server
+
+on:
+    push:
+      branches: [ recipe ]
+
+jobs:
+
+    connect-to-ssh-and-lauch-recipe:
+        runs-on: self-hosted
+        steps:
+            - uses: actions/checkout@v2
+            - uses: tzzs/server-shell@v3                # action to connect to server via SSH
+              with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
+                PRIVATE_KEY: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
+                USERNAME: ${{secrets.SSH_USER}}
+                IP: ${{secrets.HOST}}
+                PORT: ${{secrets.PORT}}
+                SHELL: |                                # add commands i want to execute on server
+                    "docker pull ghcr.io/florentgallou-dev/meditation_front:latest && docker compose -f docker-compose.recipe.yml up"

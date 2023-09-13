@@ -15,12 +15,38 @@ A symfony/Api Platform based API comming with authentification, user tocken and 
   > ``` bash
   > git clone git@github.com:florentgallou-dev/meditation_front.git
   > ```
-  > **2 Lauch npm dependancies installation**
+  > **2 Pull docker image**
   > ``` bash
-  > npm install
+  > docker pull ghcr.io/florentgallou-dev/meditation_front:latest
   > ```
-  > **3 Lauch project**
-  >```bash
-  >  npm run dev
-  >```
+  > **3 Lauch docker container**
+  > ``` bash
+  > docker compose -f docker-compose.yml up
+  > ```
+</details>
+
+<details>
+  <summary><strong>ACTIONS</strong></summary>
+
+  > **On merge with develop**
+  > Build and push docker image with self-hosted actions-runner
+  > 
+  > **On merge with recipe**
+  >
+  > **1 Connect to OVH server**
+  > **2 Pull new docker image**
+  > ``` bash
+  > docker pull ghcr.io/florentgallou-dev/meditation_front:latest
+  > ```
+  > **3 Lauch docker recipe container**
+  > ``` bash
+  > docker compose -f docker-compose.recipe.yml up
+  > ```
+  > **On merge with main**
+  >
+  > **1 Connect to OVH server**
+  > **2 Lauch docker prod container**
+  > ``` bash
+  > docker compose -f docker-compose.prod.yml up
+  > ```
 </details>

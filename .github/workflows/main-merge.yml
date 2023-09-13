@@ -1,0 +1,22 @@
+name: main lauch image
+
+run-name: ${{ github.actor }} is connecting to OVH via SSH and lauch prod docker image
+
+on:
+    push:
+      branches: [ main ]
+
+jobs:
+
+    connect-to-ssh-and-lauch-prod:
+        runs-on: self-hosted
+        steps:
+            - uses: actions/checkout@v2
+            - uses: tzzs/server-shell@v3                # action to connect to server via SSH
+              with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
+                PRIVATE_KEY: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
+                USERNAME: ${{secrets.SSH_USER}}
+                IP: ${{secrets.HOST}}
+                PORT: ${{secrets.PORT}}
+                SHELL: |                                # add commands i want to execute on server
+                    "docker compose -f docker-compose.prod.yml up"
