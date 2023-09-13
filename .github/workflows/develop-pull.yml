@@ -2,19 +2,42 @@ name: connect-ssh-test
 
 run-name: ${{ github.actor }} is connecting to OVH via SSH
 
-on: [push]
+on:
+    push:
+      branches: [ recipe ]
 
 jobs:
 
-  build:
-    runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@v2
-    - uses: tzzs/server-shell@v3                # action to connect to server via SSH
-      with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
-        USERNAME: ${{secrets.SSH_USER}}
-        IP: ${{secrets.HOST}}
-        PORT: ${{secrets.PORT}}
-        SHELL: |                                # add commands i want to execute on server
-          "cd mediation_api && ls -a"
+    build-and-push-image:
+        runs-on: self-hosted
+        permissions:
+            contents: read
+            packages: write
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+            - name: Log in to the Container registry
+              uses: docker/login-action@v2
+              with:
+                registry: ghcr.io
+                username: ${{ github.actor }}
+                password: ${{ secrets.GH_TOKEN }}
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v4
+              with:
+                context: .
+                push: true
+                tags: ghcr.io/${{ github.repository }}:latest
+
+    connect-to-ssh:
+        runs-on: self-hosted
+        steps:
+            - uses: actions/checkout@v2
+            - uses: tzzs/server-shell@v3                # action to connect to server via SSH
+              with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
+                PRIVATE_KEY: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
+                USERNAME: ${{secrets.SSH_USER}}
+                IP: ${{secrets.HOST}}
+                PORT: ${{secrets.PORT}}
+                SHELL: |                                # add commands i want to execute on server
+                    "cd mediation_api && ls -a"
