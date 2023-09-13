@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Articles', href: '/posts', current: false }
 ]
 
-function classNames(...classes) {
+function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
