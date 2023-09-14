@@ -41,5 +41,5 @@ jobs:
               PORT: ${{secrets.PORT}}
               SHELL: |                                # add commands i want to execute on server
                 "docker stop meditation_production"
-                "docker pull ghcr.io/florentgallou-dev/meditation-front-web:latest"
-                "docker run -p 3042:3000 --name meditation_production 548a2b3021a6"
+                "docker pull ghcr.io/florentgallou-dev/meditation_front:latest"
+                "docker start meditation_production"
