@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build-and-push-image:
+  build-and-push-production-image:
     runs-on: self-hosted
     permissions:
         contents: read
@@ -22,7 +22,7 @@ jobs:
             registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GH_TOKEN }}
-        - name: Build and push Docker image
+        - name: Build and push Docker production image
           uses: docker/build-push-action@v4
           with:
             context: .
