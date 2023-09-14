@@ -1,8 +1,0 @@
-services:
-  web:
-    image: ghcr.io/florentgallou-dev/meditation-front-web:latest
-    ports: 
-      - "3014:3000"
-    volumes:
-      - .:/app
-    command: npm run start
