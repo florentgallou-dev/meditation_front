@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-    build-and-push-image:
+    build-and-push-recipe-image:
         runs-on: self-hosted
         permissions:
             contents: read
@@ -22,9 +22,9 @@ jobs:
                 registry: ghcr.io
                 username: ${{ github.actor }}
                 password: ${{ secrets.GH_TOKEN }}
-            - name: Build and push Docker image
+            - name: Build and push Docker recipe image
               uses: docker/build-push-action@v4
               with:
                 context: .
                 push: true
-                tags: ghcr.io/${{ github.repository }}:latest
+                tags: ghcr.io/${{ github.repository }}:recipe
