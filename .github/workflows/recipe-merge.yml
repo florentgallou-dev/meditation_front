@@ -21,4 +21,4 @@ jobs:
                 SHELL: |                                # add commands i want to execute on server
                     "docker stop meditation_recipe"
                     "docker pull ghcr.io/florentgallou-dev/meditation-front-web:recipe"
-                    "docker run -p 3014:3000 --name meditation_recipe b16a68407c8b"
+                    "docker start meditation_recipe"
