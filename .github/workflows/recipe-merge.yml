@@ -12,14 +12,13 @@ jobs:
         runs-on: self-hosted
         steps:
             - uses: actions/checkout@v2
-            - uses: tzzs/server-shell@v3                # action to connect to server via SSH
+            - uses: appleboy/ssh-action@v1.0.0                # action to connect to server via SSH
               with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
-                PRIVATE_KEY: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
-                USERNAME: ${{secrets.SSH_USER}}
-                IP: ${{secrets.HOST}}
-                PORT: ${{secrets.PORT}}
-                SHELL: |                                # add commands i want to execute on server
-                    "bash"
-                    "docker stop meditation_recipe"
-                    "docker pull ghcr.io/florentgallou-dev/meditation-front-web:recipe"
-                    "docker start meditation_recipe"
+                host: ${{secrets.HOST}}
+                username: ${{secrets.SSH_USER}}
+                password: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
+                port: ${{secrets.PORT}}
+                script: |                               # add commands i want to execute on server
+                    docker stop meditation_recipe
+                    docker pull ghcr.io/florentgallou-dev/meditation-front-web:recipe
+                    docker start meditation_recipe
