@@ -18,4 +18,9 @@ jobs:
                 username: ${{secrets.SSH_USER}}
                 password: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
                 port: ${{secrets.PORT}}
-                script: docker stop meditation_recipe && docker rm meditation_recipe && docker rmi ghcr.io/florentgallou-dev/meditation_front:recipe && docker pull ghcr.io/florentgallou-dev/meditation-front-web:recipe && docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe
+                script: 
+                  docker stop meditation_recipe && 
+                  docker rm meditation_recipe && 
+                  docker rmi ghcr.io/florentgallou-dev/meditation_front:recipe && 
+                  docker pull ghcr.io/florentgallou-dev/meditation_front:recipe &&
+                  docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe
