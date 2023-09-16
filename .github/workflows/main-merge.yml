@@ -41,5 +41,5 @@ jobs:
               port: ${{secrets.PORT}}
               script: |                               # add commands i want to execute on server
                   docker stop meditation_production
-                  docker pull ghcr.io/florentgallou-dev/meditation-front-web:latest
+                  docker pull ghcr.io/florentgallou-dev/meditation_front:latest &&
                   docker start meditation_production
