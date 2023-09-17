@@ -24,4 +24,4 @@ RUN npm run build
 
 EXPOSE 3000
 
-CMD npm start & npx wait-on http://localhost:3000
+CMD npm run start
