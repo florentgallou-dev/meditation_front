@@ -7,24 +7,23 @@ on:
       branches: [ develop ]
 
 jobs:
-
-    build-and-push-recipe-image:
-        runs-on: self-hosted
-        permissions:
-            contents: read
-            packages: write
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-            - name: Log in to the Container registry
-              uses: docker/login-action@v2
-              with:
-                registry: ghcr.io
-                username: ${{ github.actor }}
-                password: ${{ secrets.GH_TOKEN }}
-            - name: Build and push Docker recipe image
-              uses: docker/build-push-action@v4
-              with:
-                context: .
-                push: true
-                tags: ghcr.io/${{ github.repository }}:recipe
+  build-and-push-recipe-image:
+      runs-on: self-hosted
+      permissions:
+          contents: read
+          packages: write
+      steps:
+          - name: Checkout repository
+            uses: actions/checkout@v3
+          - name: Log in to the Container registry
+            uses: docker/login-action@v2
+            with:
+              registry: ghcr.io
+              username: ${{ github.actor }}
+              password: ${{ secrets.GH_TOKEN }}
+          - name: Build and push Docker recipe image
+            uses: docker/build-push-action@v4
+            with:
+              context: .
+              push: true
+              tags: ghcr.io/${{ github.repository }}:recipe
