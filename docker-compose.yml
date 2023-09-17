@@ -5,4 +5,4 @@ services:
       - "3000:3000"   #local and preprod
     volumes:
       - .:/app
-    command: (npm run start&)
+    command: npm run start
