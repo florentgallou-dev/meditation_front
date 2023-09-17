@@ -20,6 +20,10 @@ jobs:
               script: 
                 docker stop meditation_recipe && 
                 docker rm meditation_recipe && 
+                docker ps -a -f status=exited &&
+                docker rm $(docker ps -a -f status=exited -q) &&
                 docker rmi ghcr.io/florentgallou-dev/meditation_front:recipe && 
+                docker images -f dangling=true &&
+                docker image prune -y &&
                 docker pull ghcr.io/florentgallou-dev/meditation_front:recipe && 
                 docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe
