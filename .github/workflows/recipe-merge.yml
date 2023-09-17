@@ -26,4 +26,4 @@ jobs:
                 docker images -f dangling=true &&
                 docker image prune -y &&
                 docker pull ghcr.io/florentgallou-dev/meditation_front:recipe && 
-                docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe
+                nohup docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe &
