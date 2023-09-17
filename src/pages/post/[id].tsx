@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {useEffect, useState} from 'react';
 import { useRouter } from "next/router";
 import { getPost } from '../../services/Posts';

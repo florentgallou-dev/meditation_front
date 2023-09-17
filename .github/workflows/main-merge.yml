@@ -1,0 +1,45 @@
+name: main lauch image
+
+run-name: ${{ github.actor }} is connecting to OVH via SSH and lauch prod docker image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push-production-image:
+    runs-on: self-hosted
+    permissions:
+        contents: read
+        packages: write
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+        - name: Log in to the Container registry
+          uses: docker/login-action@v2
+          with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GH_TOKEN }}
+        - name: Build and push Docker production image
+          uses: docker/build-push-action@v4
+          with:
+            context: .
+            push: true
+            tags: ghcr.io/${{ github.repository }}:latest
+  connect-to-ssh-and-lauch-prod:
+      runs-on: self-hosted
+      steps:
+          - uses: actions/checkout@v2
+          - uses: appleboy/ssh-action@v1.0.0                # action to connect to server via SSH
+            with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
+              host: ${{secrets.HOST}}
+              username: ${{secrets.SSH_USER}}
+              password: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
+              port: ${{secrets.PORT}}
+              script:
+                docker stop meditation_production && 
+                docker rm meditation_production && 
+                docker rmi ghcr.io/florentgallou-dev/meditation_front:latest && 
+                docker pull ghcr.io/florentgallou-dev/meditation_front:latest && 
+                docker run -p 3042:3000 --name meditation_production ghcr.io/florentgallou-dev/meditation_front:latest
