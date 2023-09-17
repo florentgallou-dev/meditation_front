@@ -2,7 +2,7 @@ services:
   web:
     build: .
     ports:
-      - "3014:3000"   #local and preprod
+      - "3000:3000"   #local and preprod
     volumes:
       - .:/app
     command: npm run serve
