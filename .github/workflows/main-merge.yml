@@ -42,4 +42,4 @@ jobs:
                 docker rm meditation_production && 
                 docker rmi ghcr.io/florentgallou-dev/meditation_front:latest && 
                 docker pull ghcr.io/florentgallou-dev/meditation_front:latest && 
-                docker run -p 3042:3000 --name meditation_production ghcr.io/florentgallou-dev/meditation_front:latest
+                docker run -d -p 3042:3000 --name meditation_production ghcr.io/florentgallou-dev/meditation_front:latest
