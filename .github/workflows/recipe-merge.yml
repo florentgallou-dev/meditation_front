@@ -7,20 +7,19 @@ on:
       branches: [ recipe ]
 
 jobs:
-
-    connect-to-ssh-and-lauch-recipe:
-        runs-on: self-hosted
-        steps:
-            - uses: actions/checkout@v2
-            - uses: appleboy/ssh-action@v1.0.0                # action to connect to server via SSH
-              with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
-                host: ${{secrets.HOST}}
-                username: ${{secrets.SSH_USER}}
-                password: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
-                port: ${{secrets.PORT}}
-                script: 
-                  docker stop meditation_recipe && 
-                  docker rm meditation_recipe && 
-                  docker rmi ghcr.io/florentgallou-dev/meditation_front:recipe && 
-                  docker pull ghcr.io/florentgallou-dev/meditation_front:recipe && 
-                  docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe
+  connect-to-ssh-and-lauch-recipe:
+      runs-on: self-hosted
+      steps:
+          - uses: actions/checkout@v2
+          - uses: appleboy/ssh-action@v1.0.0                # action to connect to server via SSH
+            with:                                     # can find secrets.vars in github/repo/Settings > Secrets and variables
+              host: ${{secrets.HOST}}
+              username: ${{secrets.SSH_USER}}
+              password: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
+              port: ${{secrets.PORT}}
+              script: 
+                docker stop meditation_recipe && 
+                docker rm meditation_recipe && 
+                docker rmi ghcr.io/florentgallou-dev/meditation_front:recipe && 
+                docker pull ghcr.io/florentgallou-dev/meditation_front:recipe && 
+                docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe

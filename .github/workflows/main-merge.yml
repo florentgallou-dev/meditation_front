@@ -7,7 +7,6 @@ on:
     branches: [ main ]
 
 jobs:
-
   build-and-push-production-image:
     runs-on: self-hosted
     permissions:
@@ -28,7 +27,6 @@ jobs:
             context: .
             push: true
             tags: ghcr.io/${{ github.repository }}:latest
-
   connect-to-ssh-and-lauch-prod:
       runs-on: self-hosted
       steps:
@@ -39,4 +37,9 @@ jobs:
               username: ${{secrets.SSH_USER}}
               password: ${{ secrets.PRIVATE_KEY}}  # is my local private ssh key for my ssh connection
               port: ${{secrets.PORT}}
-              script: docker stop meditation_production && docker rm meditation_production && docker rmi ghcr.io/florentgallou-dev/meditation_front:latest && docker pull ghcr.io/florentgallou-dev/meditation_front:latest && docker run -p 3042:3000 --name meditation_production ghcr.io/florentgallou-dev/meditation_front:latest
+              script:
+                docker stop meditation_production && 
+                docker rm meditation_production && 
+                docker rmi ghcr.io/florentgallou-dev/meditation_front:latest && 
+                docker pull ghcr.io/florentgallou-dev/meditation_front:latest && 
+                docker run -p 3042:3000 --name meditation_production ghcr.io/florentgallou-dev/meditation_front:latest
