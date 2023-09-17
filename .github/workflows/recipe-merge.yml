@@ -22,4 +22,4 @@ jobs:
                 docker rm meditation_recipe && 
                 docker rmi ghcr.io/florentgallou-dev/meditation_front:recipe && 
                 docker pull ghcr.io/florentgallou-dev/meditation_front:recipe && 
-                nohup docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe &
+                (docker run -p 3014:3000 --name meditation_recipe ghcr.io/florentgallou-dev/meditation_front:recipe &)
